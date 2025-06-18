@@ -39,8 +39,8 @@
               <th>fullName</th>
               <th>phoneNumber</th>
               <th>description</th>
-              <th>typeId</th>
-              <th>statusId</th>
+              <th>type</th>
+              <th>status</th>
               <th>date</th>
             </tr>
           </thead>
@@ -50,6 +50,50 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div id="clientsApplicationsChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить заявку</h2>
+        <input type="text" id="fullName" placeholder="ФИО" required />
+        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
+        <input type="text" id="description" placeholder="Описание" required />
+        <select id="typeId" name="typeId" required />
+          <option value="" disabled selected hidden>Тип заявки</option>
+          <!-- сервер? -->
+        </select>
+        <select id="statusId" name="statusId" required />
+          <option value="" disabled selected hidden>Статус заявки</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="clientsApplicationsDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить заявку</h2>
+        <input type="number" id="id" placeholder="id" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentRed">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="clientsApplicationsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="clientsApplicationsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 

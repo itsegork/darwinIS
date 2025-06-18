@@ -39,7 +39,7 @@
               <th>id</th>
               <th>name</th>
               <th>amount</th>
-              <th>objectId</th>
+              <th>object</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +48,60 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div id="materialsAddForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Добавить материал</h2>
+        <input type="text" id="name" placeholder="Название" required />
+        <input type="number" id="amount" placeholder="Количество" required />
+        <select id="jobTitleId" name="jobTitleId" required />
+          <option value="" disabled selected hidden>Объект использования</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить материал</h2>
+        <input type="text" id="name" placeholder="Название" required />
+        <input type="number" id="amount" placeholder="Количество" required />
+        <select id="jobTitleId" name="jobTitleId" required />
+          <option value="" disabled selected hidden>Объект использования</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить материал</h2>
+        <input type="number" id="id" placeholder="id" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentRed">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="materialsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 

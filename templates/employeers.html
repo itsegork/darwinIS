@@ -43,9 +43,9 @@
               <th>email</th>
               <th>bankDetails</th>
               <th>passport</th>
-              <th>jobTitleId</th>
-              <th>objectId</th>
-              <th>userId</th>
+              <th>jobTitle</th>
+              <th>object</th>
+              <th>user</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +54,84 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div id="employeersAddForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Добавить сотрудника</h2>
+        <input type="text" id="fullName" placeholder="ФИО" required />
+        <input type="number" id="personnelNumber" placeholder="Табельный номер" required />
+        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
+        <input type="email" id="email" placeholder="Электронная почта" required />
+        <input type="text" id="bankDetails" placeholder="Реквизиты" required />
+        <input type="text" id="passport" placeholder="Паспорт" required />
+        <select id="jobTitleId" name="jobTitleId" required />
+          <option value="" disabled selected hidden>Должность</option>
+          <!-- сервер? -->
+        </select>
+        <select id="objectId" name="objectId" required />
+          <option value="" disabled selected hidden>Текущий объект</option>
+          <!-- сервер? -->
+        </select>
+        <select id="userId" name="userId" required />
+          <option value="" disabled selected hidden>Привязка аккаунта пользователя</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="employeersChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить сотрудника</h2>
+        <input type="text" id="fullName" placeholder="ФИО" required />
+        <input type="number" id="personnelNumber" placeholder="Табельный номер" required />
+        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
+        <input type="email" id="email" placeholder="Электронная почта" required />
+        <input type="text" id="bankDetails" placeholder="Реквизиты" required />
+        <input type="text" id="passport" placeholder="Паспорт" required />
+        <select id="jobTitleId" name="jobTitleId" required />
+          <option value="" disabled selected hidden>Должность</option>
+          <!-- сервер? -->
+        </select>
+        <select id="objectId" name="objectId" required />
+          <option value="" disabled selected hidden>Текущий объект</option>
+          <!-- сервер? -->
+        </select>
+        <select id="userId" name="userId" required />
+          <option value="" disabled selected hidden>Привязка аккаунта пользователя</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="employeersDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить сотрудника</h2>
+        <input type="number" id="id" placeholder="id" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentRed">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="employeersErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="employeersSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 
