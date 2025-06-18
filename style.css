@@ -94,6 +94,10 @@ a {
   color: var(--primary-color);
 }
 
+.center {
+  text-align: center;
+}
+
 .textAccent {
   font-size: var(--font-size-subtext);
   color: var(--accent-color);

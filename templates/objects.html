@@ -32,7 +32,7 @@
 
     <div>
       <div class="container">
-        <h2 class="textTitle">Список объектов</h2>
+        <h2 class="textTitle center">Список объектов</h2>
         <table class="table">
           <thead>
             <tr>
@@ -48,6 +48,54 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div id="objectsAddForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Добавить объект</h2>
+        <input type="text" id="name" placeholder="Название" required />
+        <input type="text" id="address" placeholder="Адрес" required />
+        <input type="text" id="description" placeholder="Описание" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="objectsChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить объект</h2>
+        <input type="text" id="name" placeholder="Название" required />
+        <input type="text" id="address" placeholder="Адрес" required />
+        <input type="text" id="description" placeholder="Описание" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="objectsDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить объект</h2>
+        <input type="number" id="id" placeholder="id" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentRed">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="objectsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="objectsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 

@@ -32,7 +32,7 @@
 
     <div>
       <div class="container">
-        <h2 class="textTitle">Таблица учета</h2>
+        <h2 class="textTitle center">Таблица учета</h2>
         <table class="table">
           <thead>
             <tr>
@@ -49,6 +49,36 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div id="timeTrackerChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить рабочее время</h2>
+        <select id="employeeId" name="employeeId" required />
+          <option value="" disabled selected hidden>Сотрудник</option>
+          <!-- сервер? -->
+        </select>
+        <input type="date" id="date" placeholder="Дата смены" required />
+        <input type="time" id="startTime" placeholder="Время начала смены" required />
+        <input type="time" id="endTime" placeholder="Время конца смены" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="objectsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="objectsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
       </div>
     </div>
 

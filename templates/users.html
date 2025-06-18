@@ -32,14 +32,14 @@
 
     <div>
       <div class="container">
-        <h2 class="textTitle">Список пользователей</h2>
+        <h2 class="textTitle center">Список пользователей</h2>
         <table class="table">
           <thead>
             <tr>
               <th>id</th>
               <th>login</th>
               <th>password</th>
-              <th>roleId</th>
+              <th>role</th>
             </tr>
           </thead>
           <tbody>
@@ -50,6 +50,61 @@
         </table>
       </div>
     </div>
+
+    <div id="usersAddForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Добавить пользователя</h2>
+        <input type="text" id="login" placeholder="Логин" required />
+        <input type="password" id="password" placeholder="Пароль" required />
+        <select id="roleId" name="roleId" required />
+          <option value="" disabled selected hidden>Уровень доступа (роль)</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="usersChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить пользователя</h2>
+        <input type="text" id="login" placeholder="Логин" required />
+        <input type="password" id="password" placeholder="Пароль" required />
+        <select id="roleId" name="roleId" required />
+          <option value="" disabled selected hidden>Уровень доступа (роль)</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="usersDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить пользователя</h2>
+        <input type="number" id="id" placeholder="id" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentRed">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="materialsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
   </body>
 
 </html>
