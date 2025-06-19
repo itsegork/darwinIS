@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Пользователи - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   
   <body>
@@ -15,24 +16,24 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Сотрудники компании</h2>
         <div class="btnGroup">
-          <button class="btn">Добавить сотрудника</button>
-          <button class="btn">Изменить сотрудника</button>
-          <button class="btn btnAccentRed">Удалить сотрудника</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnAdd" class="btn">Добавить сотрудника</button>
+          <button id="btnOpenEdit" class="btn">Изменить сотрудника</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить сотрудника</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список сотрудников</h2>
+        <h2 class="textTitle">Список сотрудников</h2>
         <table class="table">
           <thead>
             <tr>
@@ -43,12 +44,12 @@
               <th>email</th>
               <th>bankDetails</th>
               <th>passport</th>
-              <th>jobTitle</th>
-              <th>object</th>
-              <th>user</th>
+              <th>jobTitleId</th>
+              <th>objectId</th>
+              <th>userId</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="employeers-table-body">
             <tr>
               <!-- сервер -->
             </tr>
@@ -57,29 +58,30 @@
       </div>
     </div>
 
-    <div id="employeersAddForm" class="modal hidden">
+<div id="employeersAddForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Добавить сотрудника</h2>
-        <input type="text" id="fullName" placeholder="ФИО" required />
-        <input type="number" id="personnelNumber" placeholder="Табельный номер" required />
-        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
-        <input type="email" id="email" placeholder="Электронная почта" required />
-        <input type="text" id="bankDetails" placeholder="Реквизиты" required />
-        <input type="text" id="passport" placeholder="Паспорт" required />
-        <select id="jobTitleId" name="jobTitleId" required />
+        <input type="text" id="addFullName" placeholder="ФИО" required />
+        <input type="number" id="addPersonnelNumber" placeholder="Табельный номер" required />
+        <input type="tel" id="addPhoneNumber" placeholder="Номер телефона" required />
+        <input type="email" id="addEmail" placeholder="Электронная почта" required />
+        <input type="text" id="addBankDetails" placeholder="Реквизиты" required />
+        <input type="text" id="addPassport" placeholder="Паспорт" required />
+        <select id="addJobTitleId" name="jobTitleId" required />
           <option value="" disabled selected hidden>Должность</option>
           <!-- сервер? -->
         </select>
-        <select id="objectId" name="objectId" required />
+        <select id="addObjectId" name="objectId" required />
           <option value="" disabled selected hidden>Текущий объект</option>
           <!-- сервер? -->
         </select>
-        <select id="userId" name="userId" required />
+        <select id="addUserId" name="userId" required />
           <option value="" disabled selected hidden>Привязка аккаунта пользователя</option>
           <!-- сервер? -->
         </select>
         <div class="btnGroup">
           <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>   
         </div>
       </div>
     </div>
@@ -87,26 +89,27 @@
     <div id="employeersChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить сотрудника</h2>
-        <input type="text" id="fullName" placeholder="ФИО" required />
-        <input type="number" id="personnelNumber" placeholder="Табельный номер" required />
-        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
-        <input type="email" id="email" placeholder="Электронная почта" required />
-        <input type="text" id="bankDetails" placeholder="Реквизиты" required />
-        <input type="text" id="passport" placeholder="Паспорт" required />
-        <select id="jobTitleId" name="jobTitleId" required />
+        <input type="text" id="editFullName" placeholder="ФИО" required />
+        <input type="number" id="editPersonnelNumber" placeholder="Табельный номер" required />
+        <input type="tel" id="editPhoneNumber" placeholder="Номер телефона" required />
+        <input type="email" id="editEmail" placeholder="Электронная почта" required />
+        <input type="text" id="editBankDetails" placeholder="Реквизиты" required />
+        <input type="text" id="editPassport" placeholder="Паспорт" required />
+        <select id="editJobTitleId" name="jobTitleId" required />
           <option value="" disabled selected hidden>Должность</option>
           <!-- сервер? -->
         </select>
-        <select id="objectId" name="objectId" required />
+        <select id="editObjectId" name="objectId" required />
           <option value="" disabled selected hidden>Текущий объект</option>
           <!-- сервер? -->
         </select>
-        <select id="userId" name="userId" required />
+        <select id="editUserId" name="userId" required />
           <option value="" disabled selected hidden>Привязка аккаунта пользователя</option>
           <!-- сервер? -->
         </select>
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -114,9 +117,14 @@
     <div id="employeersDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить сотрудника</h2>
-        <input type="number" id="id" placeholder="id" required />
+        <div class="forms">
+          <p>ФИО: <strong id="deletEemployeerFullName"></strong></p>
+          <p>Табельный номер: <strong id="deletEemployeerPersonnelNumber"></strong></p>
+          <p>Номер телефона: <strong id="deletEemployeerPhoneNumber"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="submit" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -135,6 +143,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/employeersLogic.js' %}"></script>
+    <script src="{% static 'js/employeersList.js' %}"></script>
   </body>
 
 </html>

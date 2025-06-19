@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Объекты - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
@@ -15,24 +16,24 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Рабочие объекты</h2>
         <div class="btnGroup">
-          <button class="btn">Добавить объект</button>
-          <button class="btn">Изменить объект</button>
-          <button class="btn btnAccentRed">Удалить объект</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnAdd" class="btn">Добавить объект</button>
+          <button id="btnOpenEdit" class="btn">Изменить объект</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить объект</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список объектов</h2>
+        <h2 class="textTitle">Список объектов</h2>
         <table class="table">
           <thead>
             <tr>
@@ -42,7 +43,7 @@
               <th>description</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="objects-table-body">
             <tr>
               <!-- сервер? -->
             </tr>
@@ -54,11 +55,12 @@
     <div id="objectsAddForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Добавить объект</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="address" placeholder="Адрес" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="text" id="addName" placeholder="Название" required />
+        <input type="text" id="addAddress" placeholder="Адрес" required />
+        <input type="text" id="addDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>   
         </div>
       </div>
     </div>
@@ -66,11 +68,12 @@
     <div id="objectsChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить объект</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="address" placeholder="Адрес" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="text" id="editName" placeholder="Название" required />
+        <input type="text" id="editAddress" placeholder="Адрес" required />
+        <input type="text" id="editDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -78,9 +81,13 @@
     <div id="objectsDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить объект</h2>
-        <input type="number" id="id" placeholder="id" required />
+        <div class="forms">
+          <p>Название: <strong id="deleteObjName"></strong></p>
+          <p>Адрес: <strong id="deleteObjAddress"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button> 
         </div>
       </div>
     </div>
@@ -99,6 +106,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/objectsLogic.js' %}"></script>
+    <script src="{% static 'js/objectsList.js' %}"></script>
   </body>
 
 </html>

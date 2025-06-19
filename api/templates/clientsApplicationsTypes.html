@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Типы заявок - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   
   <body>
@@ -15,24 +16,24 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Типы заявок</h2>
         <div class="btnGroup">
-          <button class="btn">Добавить тип</button>
-          <button class="btn">Изменить тип</button>
-          <button class="btn btnAccentRed">Удалить тип</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnAdd" class="btn">Добавить тип</button>
+          <button id="btnOpenEdit" class="btn">Изменить тип</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить тип</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список типов</h2>
+        <h2 class="textTitle">Список типов</h2>
         <table class="table">
           <thead>
             <tr>
@@ -41,9 +42,9 @@
               <th>description</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="application-types-table-body">
             <tr>
-              <!-- сервер? -->
+              <!-- сервер -->
             </tr>
           </tbody>
         </table>
@@ -53,10 +54,11 @@
     <div id="clientsApplicationsTypesAddForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Добавить тип</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="text" id="addName" placeholder="Название" required />
+        <input type="text" id="addDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>     
         </div>
       </div>
     </div>
@@ -64,10 +66,12 @@
     <div id="clientsApplicationsTypesChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить тип</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="hidden" id="id" />
+        <input type="text" id="editName" placeholder="Название" required />
+        <input type="text" id="editDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -75,9 +79,12 @@
     <div id="clientsApplicationsTypesDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить тип</h2>
-        <input type="number" id="id" placeholder="id" required />
+        <div class="forms">
+          <p>Название: <strong id="deleteTypeName"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>          
         </div>
       </div>
     </div>
@@ -96,6 +103,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/applicationsTypesLogic.js' %}"></script>
+    <script src="{% static 'js/applicationsTypesList.js' %}"></script>
   </body>
 
 </html>

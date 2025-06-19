@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Заявки клиентов - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
@@ -15,23 +16,23 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Заявки клиентов</h2>
         <div class="btnGroup">
-          <button class="btn">Изменить заявку</button>
-          <button class="btn btnAccentRed">Удалить заявку</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnOpenEdit" class="btn">Изменить заявку</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить заявку</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список заявок</h2>
+        <h2 class="textTitle">Список заявок</h2>
         <table class="table">
           <thead>
             <tr>
@@ -39,14 +40,14 @@
               <th>fullName</th>
               <th>phoneNumber</th>
               <th>description</th>
-              <th>type</th>
-              <th>status</th>
+              <th>typeId</th>
+              <th>statusId</th>
               <th>date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="application-table-body">
             <tr>
-              <!-- сервер? -->
+              <!-- сервер -->
             </tr>
           </tbody>
         </table>
@@ -56,19 +57,21 @@
     <div id="clientsApplicationsChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить заявку</h2>
-        <input type="text" id="fullName" placeholder="ФИО" required />
-        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
-        <input type="text" id="description" placeholder="Описание" required />
-        <select id="typeId" name="typeId" required />
+        <input type="hidden" id="id" />
+        <input type="text" id="fullName" placeholder="ФИО" required>
+        <input type="tel" id="phoneNumber" placeholder="Номер телефона" required>
+        <input type="text" id="description" placeholder="Описание" required>
+        <select id="typeId" name="typeId" required>
           <option value="" disabled selected hidden>Тип заявки</option>
           <!-- сервер? -->
         </select>
-        <select id="statusId" name="statusId" required />
+        <select id="statusId" name="statusId" required>
           <option value="" disabled selected hidden>Статус заявки</option>
           <!-- сервер? -->
         </select>
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -76,9 +79,14 @@
     <div id="clientsApplicationsDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить заявку</h2>
-        <input type="number" id="id" placeholder="id" required />
+        <div class="forms">
+          <p>Клиент: <strong id="deleteAppName"></strong></p>
+          <p>Телефон: <strong id="deleteAppPhone"></strong></p>
+          <p>Тип заявки: <strong id="deleteAppType"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -97,6 +105,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/applicationsList.js' %}"></script>
+    <script src="{% static 'js/applicationsDelUpd.js' %}"></script>
   </body>
 
 </html>

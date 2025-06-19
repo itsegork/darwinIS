@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Пользователи - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
@@ -15,34 +16,34 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Пользователи ИС </h2>
         <div class="btnGroup">
-          <button class="btn">Добавить пользователя</button>
-          <button class="btn">Изменить пользователя</button>
-          <button class="btn btnAccentRed">Удалить пользователя</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnAdd" class="btn">Добавить пользователя</button>
+          <button id="btnOpenEdit" class="btn">Изменить пользователя</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить пользователя</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список пользователей</h2>
+        <h2 class="textTitle">Список пользователей</h2>
         <table class="table">
           <thead>
             <tr>
               <th>id</th>
               <th>login</th>
               <th>password</th>
-              <th>role</th>
+              <th>roleId</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="users-table-body">
             <tr>
               <!-- сервер? -->
             </tr>
@@ -54,14 +55,15 @@
     <div id="usersAddForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Добавить пользователя</h2>
-        <input type="text" id="login" placeholder="Логин" required />
-        <input type="password" id="password" placeholder="Пароль" required />
-        <select id="roleId" name="roleId" required />
+        <input type="text" id="addLogin" placeholder="Логин" required />
+        <input type="password" id="addPassword" placeholder="Пароль" required />
+        <select id="addRoleId" name="roleId" required />
           <option value="" disabled selected hidden>Уровень доступа (роль)</option>
           <!-- сервер? -->
         </select>
         <div class="btnGroup">
           <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>   
         </div>
       </div>
     </div>
@@ -69,14 +71,15 @@
     <div id="usersChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить пользователя</h2>
-        <input type="text" id="login" placeholder="Логин" required />
-        <input type="password" id="password" placeholder="Пароль" required />
-        <select id="roleId" name="roleId" required />
+        <input type="text" id="editLogin" placeholder="Логин" required />
+        <input type="password" id="editPassword" placeholder="Пароль" required />
+        <select id="editRoleId" name="roleId" required />
           <option value="" disabled selected hidden>Уровень доступа (роль)</option>
           <!-- сервер? -->
         </select>
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -84,9 +87,12 @@
     <div id="usersDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить пользователя</h2>
-        <input type="number" id="id" placeholder="id" required />
+       <div class="forms">
+          <p>Логин: <strong id="deleteUserLogin"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="submit" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -105,6 +111,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/usersLogic.js' %}"></script>
+    <script src="{% static 'js/usersList.js' %}"></script>
   </body>
 
 </html>

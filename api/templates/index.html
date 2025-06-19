@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,18 +6,18 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <title>Компания Darwin</title>
-      <link rel="stylesheet" href="../style.css" />
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
     
     <div class="header">
-      <img src="../images/companyLogo.png" alt="Логотип" class="logo" />
+      <img src="{% static 'images/companyLogo.png' %}" alt="Logo" class="logo">
       <div>
         <div class="textTitle">Darwin</div>
         <div class="textAccent">надежность в каждом решении</div>
       </div>
-      <a href="auth.html" class="btn btnAccent btnAccentHeader">Для сотрудников</a>
+      <a href="/pages/auth/" class="btn btnAccent btnAccentHeader">Для сотрудников</a>
     </div>
 
     <div class="container containerColumnContent">
@@ -40,7 +41,7 @@
 
       <div class="box">
         <h2 class="textTitle">Оставьте заявку — мы перезвоним</h2>
-        <form id="login-form">
+        <form id="application-form">
           <input type="text" id="name" placeholder="Ваше имя" required />
           <input type="tel" id="phoneNumber" placeholder="Номер телефона" required />
           <input type="text" id="message" placeholder="Сообщение" required />
@@ -51,6 +52,7 @@
       </div>
     </div>
 
+    <script src="{% static 'js/applicationsAdd.js' %}"></script>
   </body>
 
 </html>

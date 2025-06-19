@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Материалы - ИС Darwin</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+
+    <div class="header">
+      <div>
+        <div class="textTitle">Курочкин Е.М.</div>
+        <div class="textAccent">администратор</div>
+      </div>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+    </div>
+
+    <div class="container">
+      <div class="box">
+        <h2 class="textTitle">Материалы</h2>
+        <div class="btnGroup">
+          <button id="btnAdd" class="btn">Добавить материал</button>
+          <button id="btnOpenEdit" class="btn">Изменить материал</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить материал</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container">
+        <h2 class="textTitle">Список материалов</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>amount</th>
+              <th>objectId</th>
+            </tr>
+          </thead>
+          <tbody id="materials-table-body"">
+            <tr>
+              <!-- сервер? -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div id="materialsAddForm" class="modal hidden">
+        <div class="box">
+          <h2 class="textTitle">Добавить материал</h2>
+          <input type="text" id="addName" placeholder="Название" required />
+          <input type="number" id="addAmount" placeholder="Количество" required />
+          <select id="addObjectId" name="objectId" required />
+            <option value="" disabled selected hidden>Объект использования</option>
+            <!-- сервер? -->
+          </select>
+          <div class="btnGroup">
+            <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+            <button type="button" class="btn" onclick="closeModal()">Отмена</button>   
+          </div>
+        </div>
+      </div>
+
+    <div id="materialsChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить материал</h2>
+        <input type="text" id="editName" placeholder="Название" required />
+        <input type="number" id="editAmount" placeholder="Количество" required />
+        <select id="editObjectId" name="objectId" required />
+          <option value="" disabled selected hidden>Объект использования</option>
+          <!-- сервер? -->
+        </select>
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить материал</h2>
+        <div class="forms">
+          <p>Название: <strong id="deleteMaterialName"></strong></p>
+          <p>Количество: <strong id="deleteMaterialAmount"></strong></p>
+        </div>
+        <div class="btnGroup">
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="materialsErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="materialsSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <script src="{% static 'js/materialsLogic.js' %}"></script>
+    <script src="{% static 'js/materialsList.js' %}"></script>
+  </body>
+
+</html>

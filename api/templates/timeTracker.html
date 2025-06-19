@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Учет рабочего времени - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
@@ -15,24 +16,24 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Учет рабочего времени</h2>
         <div class="btnGroup">
-          <button class="btn">Начать рабочий день</button>
-          <button class="btn">Завершить рабочий день</button>
-          <button class="btn btnAccentRed">Изменить данные</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="startBtn" class="btn">Начать рабочий день</button>
+          <button id="endBtn" class="btn">Завершить рабочий день</button>
+          <button id="btnOpenEdit" class="btn btnAccentRed">Изменить данные</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Таблица учета</h2>
+        <h2 class="textTitle">Таблица учета</h2>
         <table class="table">
           <thead>
             <tr>
@@ -43,7 +44,7 @@
               <th>endTime</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="timeTracker-table-body">
             <tr>
               <!-- сервер? -->
             </tr>
@@ -55,15 +56,13 @@
     <div id="timeTrackerChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить рабочее время</h2>
-        <select id="employeeId" name="employeeId" required />
-          <option value="" disabled selected hidden>Сотрудник</option>
-          <!-- сервер? -->
-        </select>
+        <input type="text" id="employeeId" placeholder="Имя работника" required />
         <input type="date" id="date" placeholder="Дата смены" required />
         <input type="time" id="startTime" placeholder="Время начала смены" required />
         <input type="time" id="endTime" placeholder="Время конца смены" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button> 
         </div>
       </div>
     </div>
@@ -82,6 +81,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/timeTrackerLogic.js' %}"></script>
+    <script src="{% static 'js/timeTrackerList.js' %}"></script>
   </body>
 
 </html>

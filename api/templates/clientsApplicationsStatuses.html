@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Статусы заявок - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   
   <body>
@@ -15,24 +16,24 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Статусы заявок</h2>
         <div class="btnGroup">
-          <button class="btn">Добавить статус</button>
-          <button class="btn">Изменить статус</button>
-          <button class="btn btnAccentRed">Удалить статус</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <button id="btnAdd" class="btn">Добавить статус</button>
+          <button id="btnOpenEdit" class="btn">Изменить статус</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить статус</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список статусов</h2>
+        <h2 class="textTitle">Список статусов</h2>
         <table class="table">
           <thead>
             <tr>
@@ -41,7 +42,7 @@
               <th>description</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="application-statuses-table-body">
             <tr>
               <!-- сервер? -->
             </tr>
@@ -50,13 +51,14 @@
       </div>
     </div>
 
-    <div id="clientsApplicationsStatusesAddForm" class="modal hidden">
+     <div id="clientsApplicationsStatusesAddForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Добавить статус</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="text" id="addName" placeholder="Название" required />
+        <input type="text" id="addDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>   
         </div>
       </div>
     </div>
@@ -64,10 +66,12 @@
     <div id="clientsApplicationsStatusesChangeForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Изменить статус</h2>
-        <input type="text" id="name" placeholder="Название" required />
-        <input type="text" id="description" placeholder="Описание" required />
+        <input type="hidden" id="id" />
+        <input type="text" id="editName" placeholder="Название" required />
+        <input type="text" id="editDescription" placeholder="Описание" required />
         <div class="btnGroup">
           <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
         </div>
       </div>
     </div>
@@ -75,9 +79,12 @@
     <div id="clientsApplicationsStatusesDeleteForm" class="modal hidden">
       <div class="box">
         <h2 class="textTitle">Удалить статус</h2>
-        <input type="number" id="id" placeholder="id" required />
+        <div class="forms">
+          <p>Название: <strong id="deleteStatusName"></strong></p>
+        </div>
         <div class="btnGroup">
-          <button type="submit" class="btn btnAccentRed">Удалить</button>
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button> 
         </div>
       </div>
     </div>
@@ -96,6 +103,8 @@
       </div>
     </div>
 
+    <script src="{% static 'js/applicationsStatusesLogic.js' %}"></script>
+    <script src="{% static 'js/applicationsStatusesList.js' %}"></script>
   </body>
 
 </html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Должности - ИС Darwin</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+
+    <div class="header">
+      <div>
+        <div class="textTitle">Курочкин Е.М.</div>
+        <div class="textAccent">администратор</div>
+      </div>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+    </div>
+
+    <div class="container">
+      <div class="box">
+        <h2 class="textTitle">Должности</h2>
+        <div class="btnGroup">
+          <button id="btnAdd" class="btn">Добавить материал</button>
+          <button id="btnOpenEdit" class="btn">Изменить материал</button>
+          <button id="deleteSubmitBtn" class="btn btnAccentRed">Удалить материал</button>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container">
+        <h2 class="textTitle">Список должностей</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody id="jobTitles-table-body">
+            <tr>
+              <!-- сервер? -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="jobTitlesAddForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Добавить должность</h2>
+        <input type="text" id="addName" placeholder="Название" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccentSuccess">Добавить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>     
+        </div>
+      </div>
+    </div>
+
+    <div id="jobTitlesChangeForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Изменить должность</h2>
+        <input type="hidden" id="id" />
+        <input type="text" id="editName" placeholder="Название" required />
+        <div class="btnGroup">
+          <button type="submit" class="btn btnAccent">Изменить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="jobTitlesDeleteForm" class="modal hidden">
+      <div class="box">
+        <h2 class="textTitle">Удалить должность</h2>
+        <div class="forms">
+          <p>Название: <strong id="deleteJobName"></strong></p>
+        </div>
+        <div class="btnGroup">
+          <button type="button" class="btn btnAccentRed" id="confirmDeleteBtn">Удалить</button>
+          <button type="button" class="btn" onclick="closeModal()">Отмена</button>          
+        </div>
+      </div>
+    </div>
+
+    <div id="jobTitlesErrorModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Возникла ошибка. Уточните подробности у системного администратора</p>
+        <button class="btn btnAccentRed" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <div id="jobTitlesSuccessModal" class="modal hidden">
+      <div class="modalBox">
+        <p>Успешно!</p>
+        <button class="btn btnAccentSuccess" onclick="closeModal()">Закрыть</button>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jobTitlesLogic.js' %}"></script>
+    <script src="{% static 'js/jobTitlesList.js' %}"></script>
+  </body>
+
+</html>

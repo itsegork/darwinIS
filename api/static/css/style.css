@@ -12,6 +12,7 @@
   --gray-color: #ccc;
   --blur-color: rgba(0, 0, 0, 0.5);
   --total-white-color: white;
+  --selected-color: #89b9e9;
 
   --border-radius: 12px;
 
@@ -92,10 +93,6 @@ a {
   font-size: var(--font-size-title-medium);
   font-weight: bold;
   color: var(--primary-color);
-}
-
-.center {
-  text-align: center;
 }
 
 .textAccent {
@@ -263,4 +260,18 @@ a {
 .table tbody tr:hover {
   background-color: var(--shadow-light);
   cursor: pointer;
+}
+
+/*added*/
+
+.selected {
+  background-color: var(--selected-color);
+}
+
+.forms {
+  width: 100%;
+  padding: var(--padding-input);
+  margin-bottom: var(--margin-medium);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-text);
 }

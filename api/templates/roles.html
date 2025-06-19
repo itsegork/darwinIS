@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Роли - ИС Darwin</title>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
@@ -15,24 +16,21 @@
         <div class="textTitle">Курочкин Е.М.</div>
         <div class="textAccent">администратор</div>
       </div>
-      <a href="index.html" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
+      <a href="/pages/index/" class="btn btnAccent btnAccentHeader">Перейти на сайт компании</a>
     </div>
 
     <div class="container">
       <div class="box">
         <h2 class="textTitle">Роли ИС</h2>
         <div class="btnGroup">
-          <button class="btn">Добавить роль</button>
-          <button class="btn">Изменить роль</button>
-          <button class="btn btnAccentRed">Удалить роль</button>
-          <a href="dashboard.html" class="btn btnAccent">Назад</a>
+          <a href="/pages/dashboard/" class="btn btnAccent">Назад</a>
         </div>
       </div>
     </div>
 
     <div>
       <div class="container">
-        <h2 class="textTitle center">Список ролей</h2>
+        <h2 class="textTitle">Список ролей</h2>
         <table class="table">
           <thead>
             <tr>
@@ -41,7 +39,7 @@
               <th>description</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="roles-table-body">
             <tr>
               <!-- сервер? -->
             </tr>
@@ -50,6 +48,7 @@
       </div>
     </div>
 
+    <script src="{% static 'js/rolesList.js' %}"></script>
   </body>
 
 </html>
